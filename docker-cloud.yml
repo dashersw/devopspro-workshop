@@ -1,0 +1,45 @@
+http-server:
+  autoredeploy: true
+  command: node http-server
+  environment:
+    - BALANCE=source
+    - 'VIRTUAL_HOST=devopspro.cotejs.org'
+  expose:
+    - '5000'
+  image: 'devopsprocote/workshop:http-server'
+  restart: on-failure
+  tags:
+    - http-server
+client-service:
+  autoredeploy: true
+  command: node services/client-service
+  image: 'devopsprocote/workshop:client-service'
+  restart: on-failure
+  tags:
+    - client-service
+lb:
+  deployment_strategy: every_node
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - http-server
+  ports:
+    - '80:80'
+    - '443:443'
+  restart: on-failure
+  roles:
+    - global
+  tags:
+    - lb
+contacts-service:
+  autoredeploy: true
+  command: node services/contacts-service
+  image: 'devopsprocote/workshop:contacts-service'
+  links:
+    - mongodb
+  restart: on-failure
+  tags:
+    - payment
+mongodb:
+  image: 'mongo:latest'
+  tags:
+    - db
