@@ -1,0 +1,44 @@
+version: '2'
+services:
+  base:
+    build: .
+    image: devopsprocote/workshop
+    restart: on-failure
+
+  lb:
+    image: dockercloud/haproxy
+    # links:
+    #   - admin
+    #   - end-user
+    #   - monitoring
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 80:80
+      - 443:443
+    restart: on-failure
+
+  client-service:
+    extends: base
+    command: node services/client-service
+    # environment:
+    #   - VIRTUAL_HOST=local-admin.cotejs.org, ws://local-admin.cotejs.org
+    #   - BALANCE=source
+    # ports:
+    #   - 5000:5000
+    depends_on:
+      - mongodb
+
+  contacts-service:
+    extends: base
+    command: node services/contacts-service
+    # environment:
+    #   - VIRTUAL_HOST=local-end-user.cotejs.org, ws://local-end-user.cotejs.org
+    #   - BALANCE=source
+    # ports:
+    #   - 5001:5001
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest

@@ -1,0 +1,23 @@
+{
+  "name": "devopspro-workshop",
+  "version": "1.0.0",
+  "description": "DevOps Pro microservices workshop material",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dashersw/devopspro-workshop.git"
+  },
+  "author": "Armagan Amcalar <armagan@amcalar.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dashersw/devopspro-workshop/issues"
+  },
+  "homepage": "https://github.com/dashersw/devopspro-workshop#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cote": "^0.15.1",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.2",
+    "mongoose-auto-increment": "^5.0.1",
+    "socket.io": "^2.0.4"
+  }
+}

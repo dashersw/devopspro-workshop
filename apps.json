@@ -1,0 +1,19 @@
+{
+    "apps": [
+        {
+            "name"      : "contacts-service",
+            "script"    : "services/contacts-service",
+            "watch"     : "services/contacts-service"
+        },
+        {
+            "name"      : "client-service",
+            "script"    : "services/client-service",
+            "watch"     : "services/client-service"
+        },
+        {
+            "name"      : "http-server",
+            "script"    : "http-server",
+            "watch"     : "http-server"
+        }
+    ]
+}
