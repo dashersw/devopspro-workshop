@@ -20,7 +20,7 @@ services:
     extends: base
     command: node http-server
     environment:
-      - VIRTUAL_HOST=devopspro.cotejs.org
+      - VIRTUAL_HOST=devopspro-test.cotejs.org
       - BALANCE=source
     ports:
       - 5000:5000
