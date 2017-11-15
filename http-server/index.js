@@ -20,6 +20,11 @@ app.get('/all', (req, res) => {
     });
 });
 
+app.post('/', async (req, res) => {
+    const response = await client.send({type: 'add', contact: req.body})
+    res.send(response)
+})
+
 var client = new cote.Requester({
     name: 'http contacts client'
 });
